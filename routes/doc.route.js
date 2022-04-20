@@ -32,7 +32,9 @@ router.get('/edit/:DOCID', isAuth, async (req, res) => {
     if (mapping == null)
         res.json({error: true, message: "Document does not exist!"});
     else                                                 // Trim ID from document name
-        res.render('doc.ejs', {doc_id: doc_id, doc_name: mapping.document_name.slice(0, -10)});
+        res.render('doc.ejs', {username: req.session.username, 
+                               doc_id: doc_id,
+                               doc_name: mapping.document_name.slice(0, -10)});
     
 });
 
@@ -162,7 +164,8 @@ router.post('/presence/:DOCID/:UID', isAuth, async (req, res) => {
     var user_id = req.params.UID;
     var index = req.body.index;
     var length = req.body.length;
-    console.log(`\n[${user_id}] made a presence change on document [${doc_id}]`);
+    var name = req.body.name;
+    console.log(`\n[${name}] made a presence change on document [${doc_id}]`);
     console.log(`index: ${index}, length: ${length}`);
     // Notify all clients (besides this one) about presence change
     clients[doc_id].forEach(function(client) {
@@ -170,7 +173,7 @@ router.post('/presence/:DOCID/:UID', isAuth, async (req, res) => {
         if (client.user_id != user_id) {
             // Notify client
             console.log(`Notifying [${client.user_id}] of presence change`);
-            var payload = {presence: {id: user_id, cursor: {index: index, length: length, name: user_id}}}
+            var payload = {presence: {id: user_id, cursor: {index: index, length: length, name: name}}}
             client.res.write(`data: ${JSON.stringify(payload)}\n\n`);
         }
     })

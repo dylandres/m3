@@ -58,7 +58,7 @@ async function login(email, password, req, res) {
             // Check if user is verified
             if (user.verified) {
                 // Associate session with user
-                req.session.userID = user.id;
+                req.session.username = user.username;
                 // Allow user to access /dashboard
                 req.session.isAuth = true;
                 // Success

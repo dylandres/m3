@@ -84,7 +84,7 @@ app.use('/doc', doc)
 app.get('/home', isAuth,
     async (req, res) => {
         res.set('X-CSE356', '61fac4e6c3ba403a360580f3');
-        res.render('home.ejs');
+        res.render('home.ejs', {username: req.session.username});
 });
 
 //test route for image upload

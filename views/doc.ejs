@@ -3,8 +3,9 @@
     <head>
         <link rel="stylesheet" href="/css/doc.css">
         <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-        <h1> <%= doc_name %>  </h1>
-        <h1> Doc ID:  <%= doc_id %>  </h1>
+        <h4> Hello, <%= username %> </h4>
+        <h4> <%= doc_name %>  </h4>
+        <h4> Doc ID:  <%= doc_id %>  </h4>
         <form action='http://localhost:8080/home'>
             <button type="submit">Return Home</button>
         </form>
@@ -18,13 +19,14 @@
         <script type="text/javascript">
             const user_id = Math.random().toString(20).substr(2, 10);
             const doc_id = `<%= doc_id %>`;
+            const username = `<%= username %>`;
             // Local version that get set when the document opens, will be used
             // for ACK messages
             var currentVersion;
             const quill = new Quill('#editor', {
                 theme: 'snow',
             });
-            queue = [];
+            var queue = [];
             function enqueue(item) {
                 // There are other OPs in the queue waiting to be sent/ACKed,
                 // update this OPs version number to the version of the last
@@ -88,7 +90,7 @@
                     var xhr = new XMLHttpRequest();
                     xhr.open("POST", `http://localhost:8080/doc/presence/${doc_id}/${user_id}`, true);
                     xhr.setRequestHeader("Content-Type", "application/json");
-                    xhr.send(JSON.stringify({index: range.index, length: range.length}));
+                    xhr.send(JSON.stringify({index: range.index, length: range.length, name: username}));
                 }
             });
             // Start Delta event stream with server
