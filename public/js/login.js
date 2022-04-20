@@ -31,7 +31,7 @@ function authenticateLogin(form) {
             if (json['error'] == false)
                 window.location.assign(`http://localhost:8080/home`);
             else
-                document.getElementById("greeting").innerHTML = json['message']
+                alert(json['message'])
         }
     }
 }
@@ -52,7 +52,7 @@ function attemptRegistration(form) {
             // Read JSON response
             var json = JSON.parse(xhr.responseText);
             // Registration successful
-            document.getElementById("greeting").innerHTML = json['message'];
+            alert(json['message'])
         }
     }
 }

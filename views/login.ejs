@@ -1,22 +1,30 @@
 <!doctype html>
 <html>
     <head>
-        <!-- <link rel="stylesheet" href="/css/login.css"> -->
+        <link rel="stylesheet" href="/css/login.css">
         <script src="/js/login.js"></script>
     </head>
     <body>
         <div id="greeting">Welcome to Gooble Docs</div>
-        <form id="register" onsubmit="return false">
-            <label>E-mail:</label><input type="email" name="email" required><br>
-            <label>Username:</label><input type="text" name="name" required><br>
-            <label>Password:</label><input type="password" name="password" required><br>
-            <input type="submit" value="Register">
-        </form><br><br>
-        <form id="login" onsubmit="return false">
-            <label>Email:</label><input type="text" name="email" required><br>
-            <label>Password:</label><input type="password" name="password" required><br>
-            <input type="submit" value="Login">
-        </form>
+        <div class="main">
+            <input type="checkbox" id="chk" aria-hidden="true">
+            <div class="signup">
+                <form id="register" onsubmit="return false">
+                    <label for="chk" aria-hidden="true">Sign up</label>
+                    <input placeholder="Email" type="email" name="email" required>
+                    <input placeholder="User Name" type="text" name="name" required>
+                    <input placeholder="Password" type="password" name="password" required>
+                    <input class="button" type="submit" value="Register">
+                </form>
+            </div>
+            <div class="login">
+                <form id="login" onsubmit="return false">
+                    <label for="chk" aria-hidden="true">Login</label>
+                    <input placeholder="Email" type="text" name="email" required>
+                    <input placeholder="Password" type="password" name="password" required>
+                    <input class="button" type="submit" value="Login">
+                </form>
+            </div>
         </div>
     </body>
 </html>
