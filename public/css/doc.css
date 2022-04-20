@@ -2,3 +2,7 @@ body{
 	font-family: 'Jost', sans-serif;
 	background: lightblue;
 }
+
+#editor {
+    background: white;
+}
