@@ -14,6 +14,11 @@ window.addEventListener("load", function() {
     createDocButton.addEventListener("submit", function() {
         createDocument(createDocButton)
     });
+    // Search button event-listener
+    var searchButton = document.getElementById("search");
+    searchButton.addEventListener("submit", function() {
+        search(searchButton)
+    });
 });
 
 function logout() {
@@ -53,6 +58,11 @@ function createDocument(form) {
                 window.location.assign(`http://localhost:8080/home`);
         }
     }
+}
+
+function search(form) {
+    var query = form.query.value;
+    alert(`Searched for '${query}'`);
 }
 
 function populateList(list) {

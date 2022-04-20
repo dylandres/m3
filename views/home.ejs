@@ -11,8 +11,12 @@
             <input type="submit" value="Log Out">
         </form><br><br>
         <form id="createdoc" onsubmit="return false">
-            <label>Doc Name:</label><input type="text" name="docname"><br>
+            <input placeholder='Document Name' type="text" name="docname"><br>
             <input type="submit" value="Create Doc">
+        </form><br><br>
+        <form id="search" onsubmit="return false">
+            <input placeholder="Try 'NASA'" type="text" name="query"><br>
+            <input type="submit" value="Search">
         </form><br><br>
         <ol id="alldocs">
             <!-- Gets populated with last 10 modified documents through
