@@ -6,7 +6,7 @@
         <h4> Hello, <%= username %> </h4>
         <h4> <%= doc_name %>  </h4>
         <h4> Doc ID:  <%= doc_id %>  </h4>
-        <form action='http://localhost:8080/home'>
+        <form action='http://hotpink.cse356.compas.cs.stonybrook.edu/home'>
             <button type="submit">Return Home</button>
         </form>
         <div id="editor"></div>
@@ -52,7 +52,7 @@
             }
             function send(item) {
                 var xhr = new XMLHttpRequest();
-                xhr.open("POST", `http://localhost:8080/doc/op/${doc_id}/${user_id}`, false);
+                xhr.open("POST", `http://hotpink.cse356.compas.cs.stonybrook.edu/doc/op/${doc_id}/${user_id}`, false);
                 xhr.setRequestHeader("Content-Type", "application/json");
                 xhr.send(JSON.stringify({version: item.version, op: item.op}));
                 // Process server response
@@ -88,13 +88,13 @@
                 if (range) {
                     // Send to server
                     var xhr = new XMLHttpRequest();
-                    xhr.open("POST", `http://localhost:8080/doc/presence/${doc_id}/${user_id}`, true);
+                    xhr.open("POST", `http://hotpink.cse356.compas.cs.stonybrook.edu/doc/presence/${doc_id}/${user_id}`, true);
                     xhr.setRequestHeader("Content-Type", "application/json");
                     xhr.send(JSON.stringify({index: range.index, length: range.length, name: username}));
                 }
             });
             // Start Delta event stream with server
-            const source = new EventSource(`http://localhost:8080/doc/connect/${doc_id}/${user_id}`);
+            const source = new EventSource(`http://hotpink.cse356.compas.cs.stonybrook.edu/doc/connect/${doc_id}/${user_id}`);
             // Listens for notifications from server (document changes from others)
             source.addEventListener('message', message => {
                 var obj = JSON.parse(event.data)

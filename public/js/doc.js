@@ -12,7 +12,7 @@ window.addEventListener("load", function() {
 function deleteDocument(doc_id) {
     // Send an AJAX POST to /logout
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:8080/collection/delete", true);
+    xhr.open("POST", "http://hotpink.cse356.compas.cs.stonybrook.edu/collection/delete", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     var payload = JSON.stringify({doc_id: doc_id});
     xhr.send(payload);
@@ -21,7 +21,7 @@ function deleteDocument(doc_id) {
             var json = JSON.parse(xhr.responseText);
             // Redirect to home page after deletion
             if (json['error'] == false)
-                window.location.assign(`http://localhost:8080/home`);
+                window.location.assign(`http://hotpink.cse356.compas.cs.stonybrook.edu/home`);
         }
     }
 }

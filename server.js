@@ -18,7 +18,7 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 app.use(cors({
-    origin: 'http://localhost:8080'
+    origin: 'http://hotpink.cse356.compas.cs.stonybrook.edu'
 }));
 
 // Connect to MongoDB

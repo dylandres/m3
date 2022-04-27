@@ -19,7 +19,7 @@ function authenticateLogin(form) {
     var password = form.password.value;
     // Send an AJAX POST to /login
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:8080/users/login", true);
+    xhr.open("POST", "http://hotpink.cse356.compas.cs.stonybrook.edu/users/login", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     var payload = JSON.stringify({'email': email, 'password': password})
     xhr.send(payload)
@@ -29,7 +29,7 @@ function authenticateLogin(form) {
             var json = JSON.parse(xhr.responseText);
             // Logged in, redirect to home page
             if (json['error'] == false)
-                window.location.assign(`http://localhost:8080/home`);
+                window.location.assign(`http://hotpink.cse356.compas.cs.stonybrook.edu/home`);
             else
                 alert(json['message'])
         }
@@ -43,7 +43,7 @@ function attemptRegistration(form) {
     var password = form.password.value;
     // Send an AJAX POST to /adduser
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:8080/users/signup", true);
+    xhr.open("POST", "http://hotpink.cse356.compas.cs.stonybrook.edu/users/signup", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     var payload = JSON.stringify({'name': username, 'email': email, 'password': password})
     xhr.send(payload)

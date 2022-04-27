@@ -24,7 +24,7 @@ window.addEventListener("load", function() {
 function logout() {
     // Send an AJAX POST to /logout
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:8080/users/logout", true);
+    xhr.open("POST", "http://hotpink.cse356.compas.cs.stonybrook.edu/users/logout", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify({}));
     xhr.onreadystatechange = function() {
@@ -33,7 +33,7 @@ function logout() {
             var json = JSON.parse(xhr.responseText);
             // Redirect to login page
             if (json['error'] == false)
-                window.location.assign(`http://localhost:8080/`);
+                window.location.assign(`http://hotpink.cse356.compas.cs.stonybrook.edu/`);
         }
     }
 }
@@ -44,7 +44,7 @@ function createDocument(form) {
         docname = 'Untitled Document';
     // Send an AJAX POST to /logout
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:8080/collection/create", true);
+    xhr.open("POST", "http://hotpink.cse356.compas.cs.stonybrook.edu/collection/create", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     var payload = JSON.stringify({'name': docname});
     xhr.send(payload)
@@ -55,7 +55,7 @@ function createDocument(form) {
             // Redirect to doc
             if (json['error'] == false)
                 var docid = json['docid']
-                window.location.assign(`http://localhost:8080/home`);
+                window.location.assign(`http://hotpink.cse356.compas.cs.stonybrook.edu/home`);
         }
     }
 }
@@ -67,7 +67,7 @@ function search(form) {
 
 function populateList(list) {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost:8080/collection/list", true);
+    xhr.open("GET", "http://hotpink.cse356.compas.cs.stonybrook.edu/collection/list", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify({}));
     xhr.onreadystatechange = function() {
@@ -79,11 +79,11 @@ function populateList(list) {
                 var li = document.createElement("li");
                 // Add an <a> tag
                 var a = document.createElement("a");
-                a.setAttribute('href', `http://localhost:8080/doc/edit/${doc.id}`);
+                a.setAttribute('href', `http://hotpink.cse356.compas.cs.stonybrook.edu/doc/edit/${doc.id}`);
                 a.innerHTML = doc.name;
                 //add last modified time
                 var xhr2 = new XMLHttpRequest();
-                xhr2.open("GET", `http://localhost:8080/doc/mapping/modified/${doc.id}`, false);
+                xhr2.open("GET", `http://hotpink.cse356.compas.cs.stonybrook.edu/doc/mapping/modified/${doc.id}`, false);
                 xhr2.send();
                 console.log(xhr2.responseText);
                 var json = JSON.parse(xhr2.responseText);
@@ -130,7 +130,7 @@ function populateList(list) {
                 deleteButton.addEventListener("submit", function() {
                     console.log(`${doc.id}`);
                     var xhr = new XMLHttpRequest();
-                    xhr.open("POST", "http://localhost:8080/collection/delete", true);
+                    xhr.open("POST", "http://hotpink.cse356.compas.cs.stonybrook.edu/collection/delete", true);
                     xhr.setRequestHeader("Content-Type", "application/json");
                     var payload = JSON.stringify({doc_id: doc.id});
                     xhr.send(payload);
@@ -139,7 +139,7 @@ function populateList(list) {
                             var json = JSON.parse(xhr.responseText);
                             // Redirect to home page after deletion
                             if (json['error'] == false)
-                                window.location.assign(`http://localhost:8080/home`);
+                                window.location.assign(`http://hotpink.cse356.compas.cs.stonybrook.edu/home`);
                         }
                     }
                 });

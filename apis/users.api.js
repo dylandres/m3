@@ -40,7 +40,7 @@ function sendVerificationEmail(email) {
        from: '"Hot Pink" <team.hotpink.inc@gmail.com>',
        to: email,
        subject: "Verify Email Address",
-       html: `<a href=http://localhost:8080/users/verify?email=${encoded_email}&key=abracadabra></a>`,
+       html: `<a href=http://hotpink.cse356.compas.cs.stonybrook.edu/users/verify?email=${encoded_email}&key=abracadabra></a>`,
    })
 }
 
